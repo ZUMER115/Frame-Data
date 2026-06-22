@@ -1,0 +1,256 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background: #0f0f0f;
+    color: #e0e0e0;
+    min-height: 100vh;
+}
+
+/* ── Header ── */
+
+header {
+    background: #111122;
+    padding: 1.2rem 2rem;
+    border-bottom: 2px solid #e94560;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+h1 {
+    color: #e94560;
+    font-size: 1.6rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+nav {
+    display: flex;
+    gap: 0.4rem;
+}
+
+.tab-btn {
+    padding: 0.45rem 1.1rem;
+    background: transparent;
+    border: 1px solid #444;
+    color: #aaa;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+
+.tab-btn:hover {
+    border-color: #e94560;
+    color: #e94560;
+}
+
+.tab-btn.active {
+    background: #e94560;
+    border-color: #e94560;
+    color: #fff;
+}
+
+/* ── Main ── */
+
+main {
+    max-width: 1100px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+}
+
+.tab {
+    display: none;
+}
+
+.tab.active {
+    display: block;
+}
+
+h2 {
+    font-size: 1.1rem;
+    margin-bottom: 1.2rem;
+    color: #e94560;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+h3 {
+    font-size: 0.85rem;
+    margin: 1.8rem 0 0.8rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+/* ── Forms ── */
+
+form {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+}
+
+input,
+select {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    color: #e0e0e0;
+    padding: 0.5rem 0.8rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    flex: 1;
+    min-width: 110px;
+    transition: border-color 0.15s;
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-color: #e94560;
+}
+
+input::placeholder {
+    color: #555;
+}
+
+select option {
+    background: #1a1a1a;
+}
+
+button {
+    padding: 0.5rem 1.2rem;
+    background: #e94560;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    transition: background 0.15s;
+    white-space: nowrap;
+}
+
+button:hover {
+    background: #c7354f;
+}
+
+.btn-secondary {
+    background: #333;
+    color: #ccc;
+}
+
+.btn-secondary:hover {
+    background: #444;
+}
+
+.form-actions {
+    display: flex;
+    gap: 0.5rem;
+    flex: none;
+}
+
+/* ── Character select row ── */
+
+.character-select-row {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.character-select-row select {
+    max-width: 260px;
+    flex: none;
+}
+
+/* ── Tables ── */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+}
+
+thead {
+    background: #111122;
+}
+
+th {
+    padding: 0.65rem 1rem;
+    text-align: left;
+    color: #e94560;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    letter-spacing: 1.5px;
+    border-bottom: 2px solid #2a2a2a;
+}
+
+td {
+    padding: 0.55rem 1rem;
+    border-bottom: 1px solid #1e1e1e;
+    color: #ccc;
+}
+
+tr:hover td {
+    background: #161616;
+}
+
+.btn-edit {
+    background: #1e4f7a;
+    padding: 0.3rem 0.65rem;
+    font-size: 0.78rem;
+    margin-right: 0.3rem;
+}
+
+.btn-edit:hover {
+    background: #155d8f;
+}
+
+.btn-delete {
+    background: #7a1e1e;
+    padding: 0.3rem 0.65rem;
+    font-size: 0.78rem;
+}
+
+.btn-delete:hover {
+    background: #922323;
+}
+
+/* ── Utility ── */
+
+.hidden {
+    display: none !important;
+}
+
+/* ── Toast ── */
+
+.toast {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    padding: 0.75rem 1.4rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    z-index: 1000;
+    pointer-events: none;
+}
+
+.toast.success {
+    background: #1a5c2a;
+    color: #d4f0db;
+    border: 1px solid #2a7a3a;
+}
+
+.toast.error {
+    background: #5c1a1a;
+    color: #f0d4d4;
+    border: 1px solid #7a2a2a;
+}
