@@ -1,0 +1,17 @@
+services:
+  db:
+    image: postgres:16-alpine
+    env_file:
+      - .env
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - db/init:/docker-entrypoint-initdb.d
+  api:
+    build: .
+    env_file:
+      - .env
+    ports:
+      - "3067:3000"
+
+volumes:
+  db_data:
