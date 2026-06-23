@@ -1,0 +1,4 @@
+CREATE TABLE IF NOT EXISTS moves (
+    id SERIAL PRIMARY KEY,
+    move TEXT NOT NULL
+)

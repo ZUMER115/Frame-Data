@@ -1,4 +1,4 @@
-CREATE TABLE characters (
+CREATE TABLE IF NOT EXISTS characters (
     id SERIAL PRIMARY KEY,
     name TEXT NOT NULL
 )
