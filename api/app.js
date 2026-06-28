@@ -9,6 +9,7 @@ require('dotenv').config();
 app.use(express.json());
 
 // Import the router to define the routes for the API
+app.use('/api/auth', require('./routes/authRoutes.js'));
 app.use('/api', require('./routes/charactersRoutes.js'));
 
 module.exports = app;

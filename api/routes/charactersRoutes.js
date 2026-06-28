@@ -13,6 +13,9 @@ const {
     deleteFrameData }
     = require('../controllers/charactersController.js');
 
+// Import the authentication middleware to protect certain routes
+router.use(require('../middleware/authMiddleware.js'));
+
 
 // Define a route for GET requests to get characters from the database
 router.get('/characters', getCharacters);

@@ -21,7 +21,7 @@ describe('API GET all', () => {
 });
 
 // Define a test suite for the API post endpoint to add characters to the database
-describe('APU POST characters', () => {
+describe('API POST characters', () => {
     // Define a test case for the POST /api/characters endpoint
     test('POST /api/characters should add a character to the database', async () => {
         // Mock the database query to return the added character

@@ -1,6 +1,9 @@
 // Import the pool connections to the database so we can connect to the database and perform queries
 const pool = require('../../db/db.js');
 
+// Import the validation schemas for characters and moves
+const { characterSchema, moveSchema, frameDataSchema, updateFrameDataSchema } = require('../validation/charactersValidation.js');
+
 // Define a function to get all characters from the database
 const getCharacters = async (req, res) => {
     try {
@@ -17,6 +20,10 @@ const getCharacters = async (req, res) => {
 
 // Define a function to add a character to the database
 const addCharacters =  async (req, res) => {
+    const { error } = characterSchema.validate(req.body);
+    if (error) {
+        return res.status(400).json({ message: error.details[0].message });
+    }
     const { name} = req.body;
     try {
         const result = await pool.query('INSERT INTO characters (name) VALUES ($1) RETURNING *', [name]);
@@ -46,6 +53,10 @@ const getMoves = async (req, res) => {
 
 // Define a function to add a move to the database
 const addMoves = async (req, res) => {
+    const { error } = moveSchema.validate(req.body);
+    if (error) {
+        return res.status(400).json({ message: error.details[0].message });
+    }
     const { move } = req.body;
     try {
     const result = await pool.query('INSERT INTO moves (move) VALUES ($1) RETURNING *', [move]);
@@ -86,6 +97,10 @@ const getFrameData = async (req, res) => {
 
 // Define a function to add frame data for specific character's moves to the database
 const addFrameData =  async (req, res) => {
+    const { error } = frameDataSchema.validate(req.body);
+    if (error) {
+        return res.status(400).json({ message: error.details[0].message });
+    }
     const { character, move, startup, on_block, recovery, on_hit, notes } = req.body;
     const characterID = await pool.query('SELECT id FROM characters WHERE name = $1', [character]);
     if (characterID.rowCount === 0) {
@@ -112,6 +127,10 @@ const addFrameData =  async (req, res) => {
 
 // Define a route to update frame data for a specific character's move in the database
 const updateFrameData =  async (req, res) => {
+    const { error } = updateFrameDataSchema.validate(req.body);
+    if (error) {
+        return res.status(400).json({ message: error.details[0].message });
+    }
     const { characterName, move } = req.params;
     const { startup, on_block, recovery, on_hit, notes } = req.body;
     const characterID = await pool.query('SELECT id FROM characters WHERE name = $1', [characterName]);
