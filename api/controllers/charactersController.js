@@ -5,7 +5,7 @@ const pool = require('../../db/db.js');
 const { characterSchema, moveSchema, frameDataSchema, updateFrameDataSchema } = require('../validation/charactersValidation.js');
 
 // Define a function to get all characters from the database
-const getCharacters = async (req, res) => {
+const getCharacters = async (req, res, next) => {
     try {
         const result = await pool.query('SELECT * FROM characters');
         if (result.rowCount === 0) {
@@ -13,13 +13,12 @@ const getCharacters = async (req, res) => {
         }
         return res.status(200).json(result.rows);
     } catch (error) {
-        console.error(error);
-        return res.status(500).json({message: "Internal server error"});
+        next(error);
     }
 }
 
 // Define a function to add a character to the database
-const addCharacters =  async (req, res) => {
+const addCharacters =  async (req, res, next) => {
     const { error } = characterSchema.validate(req.body);
     if (error) {
         return res.status(400).json({ message: error.details[0].message });
@@ -32,13 +31,12 @@ const addCharacters =  async (req, res) => {
         }
         return res.status(201).json(result.rows[0]);
     } catch (error) {
-        console.error(error);
-        return res.status(500).json({message: "Internal server error"});
+        next(error);
     }
 }
 
 // Define a function to get all moves from the database
-const getMoves = async (req, res) => {
+const getMoves = async (req, res, next) => {
     try {
         const result = await pool.query('SELECT * FROM moves');
         if (result.rowCount === 0) {
@@ -46,13 +44,12 @@ const getMoves = async (req, res) => {
         } 
         return res.status(200).json(result.rows);
     } catch (error) {
-        console.error(error);
-        return res.status(500).json({message: "Internal server error"});
+        next(error);
     }
 }
 
 // Define a function to add a move to the database
-const addMoves = async (req, res) => {
+const addMoves = async (req, res, next) => {
     const { error } = moveSchema.validate(req.body);
     if (error) {
         return res.status(400).json({ message: error.details[0].message });
@@ -65,13 +62,12 @@ const addMoves = async (req, res) => {
     }
     return res.status(201).json(result.rows[0]);
     } catch (error) {
-        console.error(error);
-        return res.status(500).json({message: "Internal server error"});
+        next(error);
     }
 }
 
 // Define a function to get the frame data for a specific character's moves from the database
-const getFrameData = async (req, res) => {
+const getFrameData = async (req, res, next) => {
     const { characterName } = req.params;
     const characterID = await pool.query('SELECT id FROM characters WHERE name = $1', [characterName]);
     if (characterID.rowCount === 0) {
@@ -90,13 +86,12 @@ const getFrameData = async (req, res) => {
             return res.status(200).json(result.rows);
 
     } catch (error) {
-        console.error(error);
-        return res.status(500).json({message: "Internal server error"});
+        next(error);
     }
 }
 
 // Define a function to add frame data for specific character's moves to the database
-const addFrameData =  async (req, res) => {
+const addFrameData =  async (req, res, next) => {
     const { error } = frameDataSchema.validate(req.body);
     if (error) {
         return res.status(400).json({ message: error.details[0].message });
@@ -120,13 +115,12 @@ const addFrameData =  async (req, res) => {
         }
         return res.status(201).json(result.rows[0]);
     } catch (error) {
-        console.error(error);
-        return res.status(500).json({message: "Internal server error"});
+        next(error);
     }
 }
 
 // Define a route to update frame data for a specific character's move in the database
-const updateFrameData =  async (req, res) => {
+const updateFrameData =  async (req, res, next) => {
     const { error } = updateFrameDataSchema.validate(req.body);
     if (error) {
         return res.status(400).json({ message: error.details[0].message });
@@ -152,13 +146,12 @@ const updateFrameData =  async (req, res) => {
         }
         return res.status(200).json(result.rows[0]);
     } catch (error) {
-        console.error(error);
-        return res.status(500).json({message: "Internal server error"});
+        next(error);
     }
 }
 
 // Define a route to delete frame data for a specific character's move from the database
-const deleteFrameData =  async (req, res) => {
+const deleteFrameData =  async (req, res, next) => {
     const { characterName, move } = req.params;
     const characterID = await pool.query('SELECT id FROM characters WHERE name = $1', [characterName]);
     if (characterID.rowCount === 0) {
@@ -178,8 +171,7 @@ const deleteFrameData =  async (req, res) => {
         }
         return res.status(200).json({message: "Frame data deleted successfully"});
     } catch (error) {
-        console.error(error);
-        return res.status(500).json({message: "Internal server error"});
+        next(error);
     }
 }
 

@@ -20,6 +20,9 @@ app.use(express.json());
 app.use('/api/auth', require('./routes/authRoutes.js'));
 app.use('/api', require('./routes/charactersRoutes.js'));
 
+// Centralized error handler - must be last
+app.use(require('./middleware/errorHandler.js'));
+
 module.exports = app;
 
 
