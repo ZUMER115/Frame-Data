@@ -6,12 +6,20 @@ services:
     volumes:
       - db_data:/var/lib/postgresql/data
       - ./db/init:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $POSTGRES_USER -d $POSTGRES_DB"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
   api:
     build: .
     env_file:
       - .env
     ports:
       - "3067:3000"
+    depends_on:
+      db:
+        condition: service_healthy
 
 volumes:
   db_data:
