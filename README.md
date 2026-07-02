@@ -15,14 +15,14 @@ FrameData API is a production-minded backend service for managing fighting game 
 - GitHub Actions self-hosted deployment
 
 ## API Endpoints
-| POST | /api/auth/register | Register user
-| POST | /api/auth/login | Login existing user and receive JWT
-| GET | /api/characters | Get characters
-| POST | /api/characters | Create characters
-| GET | /api/moves | Get moves
-| POST | /api/moves | Create moves
-| GET | /api/frame-data/:characterName | Get character frame data
-| POST | /api/frame-data | Create character frame data
+- | POST |  /api/auth/register |  Register user 
+- | POST |  /api/auth/login |  Login existing user and receive JWT
+- | GET |  /api/characters |  Get characters
+- | POST |  /api/characters |  Create characters
+- | GET |  /api/moves |  Get moves
+- | POST |  /api/moves |  Create moves
+- | GET |  /api/frame-data/:characterName |  Get character frame data
+- | POST |  /api/frame-data |  Create character frame data
 
 ## Security and Reliability
 JWT authentication, rate limiting, Joi input validation, protected endpoints, centralized error handling, database health checks
