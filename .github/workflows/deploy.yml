@@ -23,6 +23,6 @@ jobs:
 
       - name: Deploy to server
         run: |
-          docker compose down -v || true
+          docker compose down || true
           docker compose up --build -d 
       
