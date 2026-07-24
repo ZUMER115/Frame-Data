@@ -30,7 +30,7 @@ jobs:
             POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
             JWT_SECRET: ${{ secrets.JWT_SECRET }}
         run: |
-            rsync -avz --exclude '.git' -i ~/.ssh/ec2_key.pem" $GITHUB_WORKSPACE/. $EC2_USER@$EC2_HOST:/home/$EC2_USER/app
+            rsync -avz --exclude '.git' -i ~/.ssh/ec2_key.pem $GITHUB_WORKSPACE/. $EC2_USER@$EC2_HOST:/home/$EC2_USER/app
             ssh -i ~/.ssh/ec2_key.pem $EC2_USER@$EC2_HOST << EOF
               cd /home/$EC2_USER/app
               echo  "POSTGRES_USER=$POSTGRES_USER" > .env
