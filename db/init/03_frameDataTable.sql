@@ -7,4 +7,6 @@ CREATE TABLE IF NOT EXISTS frame_data (
     recovery INTEGER,
     on_hit INTEGER,
     notes TEXT
-)
+);
+
+CREATE UNIQUE INDEX IF NOT EXISTS idx_frameData_character_move ON frame_data(characters_id, moves_id);

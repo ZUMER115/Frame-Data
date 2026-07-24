@@ -7,22 +7,39 @@ on:
   
 jobs:
   deploy:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
+      - name: Configure SSH Connection
+        env:
+          EC2_SSH_KEY: ${{ secrets.EC2_SSH_KEY }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$EC2_SSH_KEY" > ~/.ssh/ec2_key.pem
+          chmod 400 ~/.ssh/ec2_key.pem
+          ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
+
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Create .env file
+      - name: Connect to EC2
+        env:
+            EC2_HOST: ${{ secrets.EC2_HOST }}
+            EC2_USER: ${{ secrets.EC2_USER }}
+            POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+            POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+            POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+            JWT_SECRET: ${{ secrets.JWT_SECRET }}
         run: |
-          echo "POSTGRES_USER=${{ secrets.POSTGRES_USER }}" >> .env
-          echo "POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}" >> .env
-          echo "POSTGRES_DB=${{ secrets.POSTGRES_DB }}" >> .env
-          echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> .env
-          echo "DB_HOST=db" >> .env
-          echo "DB_PORT=5432" >> .env
+            scp -i ~/.ssh/ec2_key.pem -r $GITHUB_WORKSPACE/. ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/home/${{ secrets.EC2_USER }}/app
+            ssh -i ~/.ssh/ec2_key.pem $EC2_USER@$EC2_HOST << EOF
+              cd /home/$EC2_USER/app
+              echo  "POSTGRES_USER=$POSTGRES_USER" > .env
+              echo "POSTGRES_PASSWORD=$POSTGRES_PASSWORD" >> .env
+              echo "POSTGRES_DB=$POSTGRES_DB" >> .env
+              echo "JWT_SECRET=$JWT_SECRET" >> .env
+              echo "DB_HOST=db" >> .env
+              echo "DB_PORT=5432" >> .env
 
-      - name: Deploy to server
-        run: |
-          docker compose down || true
-          docker compose up --build -d 
-      
+              docker compose down || true
+              docker compose up --build -d 
+            EOF
