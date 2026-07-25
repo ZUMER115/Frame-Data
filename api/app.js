@@ -3,6 +3,7 @@ const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');
 const app = express();
+const path = require('path');
 
 // Import the dotenv package to manage env variables
 require('dotenv').config();
@@ -17,7 +18,7 @@ app.use(cors({ origin: false }));
 app.use(express.json());
 
 // Create a static web page
-app.use(express.static('../public'));
+app.use(express.static(path.join(__dirname, '../public')));
 
 // Import the router to define the routes for the API
 app.use('/api/auth', require('./routes/authRoutes.js'));
