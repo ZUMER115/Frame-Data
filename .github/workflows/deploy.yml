@@ -41,5 +41,5 @@ jobs:
               echo "DB_PORT=5432" >> .env
 
               docker compose down || true
-              docker compose up --build -d   
+              docker compose up --build -d
             EOF
