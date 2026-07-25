@@ -16,6 +16,9 @@ app.use(cors({ origin: false }));
 // Allow the app to read JSON data from the request body
 app.use(express.json());
 
+// Create a static web page
+app.use(express.static('../public'));
+
 // Import the router to define the routes for the API
 app.use('/api/auth', require('./routes/authRoutes.js'));
 app.use('/api', require('./routes/charactersRoutes.js'));
