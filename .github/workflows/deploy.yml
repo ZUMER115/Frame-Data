@@ -6,7 +6,7 @@ on:
       - main
   
 jobs:
-  deploy:
+  deploy-API-to-EC2:
     runs-on: ubuntu-latest
     steps:
       - name: Configure SSH Connection
@@ -43,3 +43,22 @@ jobs:
               docker compose down || true
               docker compose up --build -d
             EOF
+
+  deploy-public-to-s3:
+    runs-on: ubuntu-latest
+    needs: deploy-API-to-EC2
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Deploy public folder to S3
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: arn:aws:iam::975050006052:role/frame-data.s3_EditBucket
+          aws-region: us-east-1
+        
+      - name: Sync public folder to S3
+        run: aws s3 sync ./public s3://frame-data.s3 --delete

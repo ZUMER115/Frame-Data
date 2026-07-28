@@ -35,3 +35,5 @@ describe('API POST login', () => {
         expect(res.body).toEqual({message: "Invalid username or password"})
     })
 })
+
+
