@@ -16,14 +16,3 @@ pool.query('SELECT 1')
         console.error('Failed to connect to the database:', error.message);
         process.exit(1);
     });
-
-
-const express = require('express')
-
-const app = express()
-
-
-
-app.listen(3000, () => {
-
-})
