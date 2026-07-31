@@ -4,6 +4,11 @@ function myFunction() {
 
 async function fetchData() {
     const response = await fetch(EC2_HOST + '/api/characters');
-    const data = await response.json();
-    document.getElementById("characters").innerHTML = JSON.stringify(data);
+    if (!response.ok) {
+        document.getElementById("characters").innerHTML = "Error fetching data: " + response.statusText;
+        return;
+    } else {
+        const data = await response.json();
+        document.getElementById("characters").innerHTML = JSON.stringify(data);
+    }
 }
