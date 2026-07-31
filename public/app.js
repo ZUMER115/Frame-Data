@@ -25,7 +25,7 @@ async function registerUser() {
     const username = document.getElementById("regUsername").value;
     const password = document.getElementById("regPassword").value;
 
-    const response = await fetch('http://107.23.220.85:3067/api/auth/registerUser', {
+    const response = await fetch('http://107.23.220.85:3067/api/auth/register', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
