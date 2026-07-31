@@ -5,25 +5,16 @@ const cors = require('cors');
 const app = express();
 const path = require('path');
 
+
+
 // Import the dotenv package to manage env variables
 require('dotenv').config();
 
 // Set secure HTTP headers
 app.use(helmet());
 
-// Allow requests from the S3-hosted frontend origin
-const allowedOrigins = [process.env.FRONTEND_ORIGIN, 'https://my-bucket.s3.amazonaws.com'];
-
-app.use(cors({
-    origin: (origin, callback) => {
-        if (!origin || allowedOrigins.includes(origin)) {
-            callback(null, true);
-            return;
-        }
-        callback(new Error('Not allowed by CORS'));
-    },
-    credentials: true
-}));
+// Restrict cross-origin requests
+app.use(cors({ origin: process.env.S3_HOST }));
 
 // Allow the app to read JSON data from the request body
 app.use(express.json());
