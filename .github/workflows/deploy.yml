@@ -39,6 +39,7 @@ jobs:
               echo "JWT_SECRET=$JWT_SECRET" >> .env
               echo "DB_HOST=db" >> .env
               echo "DB_PORT=5432" >> .env
+              echo "S3_HOST=http://frame-data.s3.s3-website-us-east-1.amazonaws.com" >> .env
 
               docker compose down || true
               docker compose up --build -d
