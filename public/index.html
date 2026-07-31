@@ -1,35 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>Frame Data API</title>
-        <script src="app.js"></script>
-    </head>
-    <body>
-        <p id="characters">
-            No content yet.
-            <button onclick="fetchData()">Load Characters</button>
-        </p>
+<head>
+    <title>Frame Data API</title>
+    <script src="app.js" defer></script>
+</head>
 
-        <p id ="register">
-            <form id="registerForm">
-                <h2>Register</h2>
-                <label for="regUsername">Username: </label></br>
-                <input type="text" id="regUsername" name="regUsername"></br>
-                <label for="regPassword">Password: </label></br>
-                <input type="text" id="regPassword" name="regPassword"></br>
-                <button onclick="registerUser()">Register</button></br>
-            </form>
-        </p>
+<body>
+    <div id="characters">
+        No content yet.
+        <button type="button" onclick="fetchData()">Load Characters</button>
+    </div>
 
-        <p id ="Login">
-            <form id="registerForm">
-                <h2>Login</h2>
-                <label for="logUsername">Username: </label></br>
-                <input type="text" id="logUsername" name="logUsername"></br>
-                <label for="logPassword">Password: </label></br>
-                <input type="text" id="logPassword" name="logPassword"></br>
-                <button onclick="loginUser()">Login</button>
-            </form>
-        </p>
-    </body>
+    <div id="register">
+        <form id="registerForm" onsubmit="event.preventDefault(); registerUser();">
+            <h2>Register</h2>
+
+            <label for="regUsername">Username:</label><br>
+            <input type="text" id="regUsername" name="regUsername"><br>
+
+            <label for="regPassword">Password:</label><br>
+            <input type="password" id="regPassword" name="regPassword"><br>
+
+            <button type="submit">Register</button>
+        </form>
+    </div>
+
+    <div id="login">
+        <form id="loginForm" onsubmit="event.preventDefault(); loginUser();">
+            <h2>Login</h2>
+
+            <label for="logUsername">Username:</label><br>
+            <input type="text" id="logUsername" name="logUsername"><br>
+
+            <label for="logPassword">Password:</label><br>
+            <input type="password" id="logPassword" name="logPassword"><br>
+
+            <button type="submit">Login</button>
+        </form>
+    </div>
+</body>
 </html>

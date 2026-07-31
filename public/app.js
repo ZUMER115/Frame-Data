@@ -5,9 +5,10 @@ function myFunction() {
 async function fetchData() {
     const token = localStorage.getItem('token');
 
-    const response = await fetch('http://107.23.220.85:3067/api/auth/register', {
+    const response = await fetch('http://107.23.220.85:3067/api/characters', {
         method: 'GET',
         headers: {
+            'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
         }
     });
@@ -26,8 +27,10 @@ async function registerUser() {
 
     const response = await fetch('http://107.23.220.85:3067/api/auth/registerUser', {
         method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
         body: JSON.stringify({ username, password}),
-
     });
     if (!response.ok) {
         document.getElementById("register").innerHTML = "Error registering user: " + response.statusText;
@@ -44,14 +47,17 @@ async function loginUser() {
 
     const response = await fetch('http://107.23.220.85:3067/api/auth/login', {
         method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
         body: JSON.stringify({ username, password }),
     });
     if (!response.ok) {
         document.getElementById("login").innerHTML = "ERROR logging in user: " + response.statusText;
         return;
-    } else {
-        const data = await response.json();
-        document.getElementById("login").innerHTML = JSON.stringify(data);
     }
+    const data = await response.json();
+    document.getElementById("login").innerHTML = JSON.stringify(data);
+    
     localStorage.setItem('token', data.token);
 }
