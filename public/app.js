@@ -3,7 +3,14 @@ function myFunction() {
 }
 
 async function fetchData() {
-    const response = await fetch('http://107.23.220.85:3067/api/auth/register');
+    const token = localStorage.getItem('token');
+
+    const response = await fetch('http://107.23.220.85:3067/api/auth/register', {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    });
     if (!response.ok) {
         document.getElementById("characters").innerHTML = "Error fetching data: " + response.statusText;
         return;
@@ -14,10 +21,14 @@ async function fetchData() {
 }
 
 async function registerUser() {
-    const username = document.getElementById("regUsername").innerHTML.value;
-    const password = document.getElementById("regPassword").innerHTML.value;
+    const username = document.getElementById("regUsername").value;
+    const password = document.getElementById("regPassword").value;
 
-    const response = await fetch('http://107.23.220.85:3067/api/characters');
+    const response = await fetch('http://107.23.220.85:3067/api/auth/registerUser', {
+        method: 'POST',
+        body: JSON.stringify({ username, password}),
+
+    });
     if (!response.ok) {
         document.getElementById("register").innerHTML = "Error registering user: " + response.statusText;
         return;
@@ -28,15 +39,19 @@ async function registerUser() {
 }
 
 async function loginUser() {
-    const username = document.getElementById("logUsername").innerHTML.value;
-    const password = document.getElementById("logPassword").innerHTML.value;
+    const username = document.getElementById("logUsername").value;
+    const password = document.getElementById("logPassword").value;
 
-    const response = await fetch('http://107.23.220.85:3067/api/auth/login');
+    const response = await fetch('http://107.23.220.85:3067/api/auth/login', {
+        method: 'POST',
+        body: JSON.stringify({ username, password }),
+    });
     if (!response.ok) {
-        document.getElementById("login").innerHTML = "ERROR loggin in user: " + response.statusText;
+        document.getElementById("login").innerHTML = "ERROR logging in user: " + response.statusText;
         return;
     } else {
         const data = await response.json();
         document.getElementById("login").innerHTML = JSON.stringify(data);
     }
+    localStorage.setItem('token', data.token);
 }
