@@ -2,7 +2,7 @@ function myFunction() {
     document.getElementById("text").innerHTML = "Hello World!";
 }
 
-async function fetchData() {
+async function fetchCharacters() {
     const token = localStorage.getItem('token');
 
     const response = await fetch('http://107.23.220.85:3067/api/characters', {
@@ -17,7 +17,25 @@ async function fetchData() {
         return;
     } else {
         const data = await response.json();
-        document.getElementById("characters").innerHTML = JSON.stringify(data[0].name);
+        document.getElementById("characters").innerHTML = "Characters: " + JSON.stringify(data[0].name);
+    }
+}
+
+async function addCharacters() {
+    const name = document.getElementById("addCharForm").value
+    const response = await fetch("http://107.23.220.85:3067/api/characters", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ name })
+    })
+    if (!response.ok) {
+        document.getElementById("addCharForm").innerHTML = "Error"
+        return
+    } else {
+        const response = await response.json()
+        document.getElementById("addCharForm").innerHTML = "Added Character: " + response.name
     }
 }
 
