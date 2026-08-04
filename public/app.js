@@ -36,8 +36,8 @@ async function addCharacters() {
         document.getElementById("addCharForm").innerHTML = "Error: " + response.statusText;
         return
     } else {
-        const response = await response.json()
-        document.getElementById("addCharForm").innerHTML = "Added Character: " + response.name
+        const data = await response.json()
+        document.getElementById("addCharForm").innerHTML = "Added Character: " + data.name
     }
 }
 
