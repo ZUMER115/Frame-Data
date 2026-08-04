@@ -22,7 +22,7 @@ async function fetchCharacters() {
 }
 
 async function addCharacters() {
-    const name = document.getElementById("addCharForm").value
+    const name = document.getElementById("addChar").value
     const response = await fetch("http://107.23.220.85:3067/api/characters", {
         method: 'POST',
         headers: {
@@ -31,7 +31,7 @@ async function addCharacters() {
         body: JSON.stringify({ name })
     })
     if (!response.ok) {
-        document.getElementById("addCharForm").innerHTML = "Error"
+        document.getElementById("addCharForm").innerHTML = "Error: " + response.statusText;
         return
     } else {
         const response = await response.json()
