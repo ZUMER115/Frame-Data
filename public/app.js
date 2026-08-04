@@ -17,7 +17,7 @@ async function fetchData() {
         return;
     } else {
         const data = await response.json();
-        document.getElementById("characters").innerHTML = JSON.stringify(data);
+        document.getElementById("characters").innerHTML = JSON.stringify(data.name);
     }
 }
 
