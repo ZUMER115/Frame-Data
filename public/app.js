@@ -23,10 +23,12 @@ async function fetchCharacters() {
 
 async function addCharacters() {
     const name = document.getElementById("addChar").value
+    const token = localStorage.getItem('token')
     const response = await fetch("http://107.23.220.85:3067/api/characters", {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify({ name })
     })
