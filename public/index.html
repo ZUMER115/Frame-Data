@@ -60,14 +60,21 @@
 
 
     <div id="getFrameData" class="getFrameData">    
-        <form onsubmit="event.preventDefault(); getFrameData()" id="getFrameDataForm">
+        <!-- <form onsubmit="event.preventDefault(); getFrameData()" id="getFrameDataForm">
             <h2>Get Frame Data</h2>
             
             <label for="getFrameDataInput">Character</label><br>
             <input type="text" id="getFrameDataInput" name="getFrameDataInput"><br><br>
             <button type="submit">Get Data</button>
-        </form>
+        </form> -->
         
+        <form onsubmit="event.preventDefault(); getFrameData()">
+            <select id="getFrameDataInput" name="getFrameDataInput">
+                <option value=""></option>
+            </select>
+            <button type ="submit">Get Data</button>
+        </form>
+
         <pre id="frameDataOutput"></pre>
 
     </div>

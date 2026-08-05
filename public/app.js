@@ -16,7 +16,7 @@ async function fetchCharacters() {
         return;
     } else {
         const data = await response.json();
-        document.getElementById("charactersOutput").innerHTML = "Characters: <br>";
+        document.getElementById("charactersOutput").innerHTML = "";
         for (let i = 0; i < data.length; i++) {
             document.getElementById("charactersOutput").innerHTML += data[i].name + "<br>";
         }
@@ -105,4 +105,35 @@ async function loginUser() {
     document.getElementById("loginOutput").innerHTML = JSON.stringify(data);
     
     localStorage.setItem('token', data.token);
+}
+
+async function populateCharacterDropdown() {
+    const token = localStorage.getItem('token');
+    const dropdown = document.getElementById("getFrameDataInput");
+    try {
+        const response = await fetch("http://107.23.220.85:3067/api/characters", {
+            method: "GET",
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+
+        const data = response.json()
+
+        if (!response.ok) {
+            document.getElementById("frameDataOutput").innerHTML = data.message
+            return;
+        }
+
+        for (const char of data) {
+            const option = document.createElement("option")
+
+            option.value = char.name;
+            document.getElementById("getFrameDataInput").appendChild(option)
+        }
+
+    } catch (error) {
+        document.getElementById("frameDataOutput").innerHTML = "Error: " + error.message
+    }
+
 }
