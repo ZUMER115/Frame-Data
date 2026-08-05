@@ -70,14 +70,16 @@
         
         <form onsubmit="event.preventDefault(); getFrameData()">
             <select id="getFrameDataInput" name="getFrameDataInput">
-                <option value=""></option>
+                <option value="">Select a character</option>
             </select>
-            <button type ="submit">Get Data</button>
+            <button type ="submit">Get Data</button><br><br>
+            <button onclick="populateCharacterDropdown()">Load Characters</button>
         </form>
 
         <pre id="frameDataOutput"></pre>
 
+
+
     </div>
-    <button onclick="populateCharacterDropdown()">Load Character Dropdown</button>
 </body>
 </html>
