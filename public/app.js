@@ -47,7 +47,7 @@ async function addCharacters() {
 async function getFrameData () {
     const name = document.getElementById("getMovesInput").value
     const token = localStorage.getItem("token")
-    const response = await fetch("http://107.23.220.85:3067/api/frameData", {
+    const response = await fetch("http://107.23.220.85:3067/api/getFrameData", {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
