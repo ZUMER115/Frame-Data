@@ -25,6 +25,10 @@ const addCharacters =  async (req, res, next) => {
     }
     const { name} = req.body;
     try {
+        const existing = await pool.query('SELECT * FROM characters WHERE name = $1', [name]);
+        if (existing.rowCount > 0) {
+            return res.status(400).json({message: "Character already exists"});
+        }
         const result = await pool.query('INSERT INTO characters (name) VALUES ($1) RETURNING *', [name]);
         if (result.rowCount === 0) {
             return res.status(400).json("Failed to add character");
