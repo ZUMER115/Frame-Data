@@ -48,7 +48,7 @@ async function getFrameData () {
     const token = localStorage.getItem("token")
 
     try {
-        const response = await fetch(`http://107.23.220.85:3067/api/getFrameData/${name}`, {
+        const response = await fetch(`http://107.23.220.85:3067/api/frame-data/${name}`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`
