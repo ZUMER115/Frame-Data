@@ -17,7 +17,11 @@ async function fetchCharacters() {
         return;
     } else {
         const data = await response.json();
-        document.getElementById("characters").innerHTML = "Characters: " + JSON.stringify(data[0].name);
+        document.getElementById("addCharacters").innerHTML = "Characters: <br>";
+        for (let i = 0; i < data.length; i++) {
+            
+
+        }
     }
 }
 
