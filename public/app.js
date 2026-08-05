@@ -12,13 +12,13 @@ async function fetchCharacters() {
         }
     });
     if (!response.ok) {
-        document.getElementById("characters").innerHTML = "Error fetching data: " + response.statusText;
+        document.getElementById("charactersOutput").innerHTML = "Error fetching data: " + response.statusText;
         return;
     } else {
         const data = await response.json();
-        document.getElementById("characters").innerHTML = "Characters: <br>";
+        document.getElementById("charactersOutput").innerHTML = "Characters: <br>";
         for (let i = 0; i < data.length; i++) {
-            document.getElementById("characters").innerHTML += data[i].name + "<br>";
+            document.getElementById("charactersOutput").innerHTML += data[i].name + "<br>";
         }
     }
 }
@@ -35,11 +35,11 @@ async function addCharacters() {
         body: JSON.stringify({ name })
     })
     if (!response.ok) {
-        document.getElementById("addCharForm").innerHTML = "Error: " + response.statusText;
+        document.getElementById("addCharOutput").innerHTML = "Error: " + response.statusText;
         return
     } else {
         const data = await response.json()
-        document.getElementById("addCharForm").innerHTML = "Added Character: " + data.name
+        document.getElementById("addCharOutput").innerHTML = "Added Character: " + data.name
     }
 }
 
@@ -78,11 +78,11 @@ async function registerUser() {
         body: JSON.stringify({ username, password}),
     });
     if (!response.ok) {
-        document.getElementById("register").innerHTML = "Error registering user: " + response.statusText;
+        document.getElementById("registerOutput").innerHTML = "Error registering user: " + response.statusText;
         return;
     } else {
         const data = await response.json();
-        document.getElementById("register").innerHTML = JSON.stringify(data);
+        document.getElementById("registerOutput").innerHTML = JSON.stringify(data);
     }
 }
 
@@ -98,11 +98,11 @@ async function loginUser() {
         body: JSON.stringify({ username, password }),
     });
     if (!response.ok) {
-        document.getElementById("login").innerHTML = "ERROR logging in user: " + response.statusText;
+        document.getElementById("loginOutput").innerHTML = "ERROR logging in user: " + response.statusText;
         return;
     }
     const data = await response.json();
-    document.getElementById("login").innerHTML = JSON.stringify(data);
+    document.getElementById("loginOutput").innerHTML = JSON.stringify(data);
     
     localStorage.setItem('token', data.token);
 }
