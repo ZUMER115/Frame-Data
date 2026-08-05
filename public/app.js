@@ -35,7 +35,7 @@ async function addCharacters() {
         body: JSON.stringify({ name })
     })
     if (!response.ok) {
-        document.getElementById("addCharOutput").innerHTML = "Error: " + response.statusText;
+        document.getElementById("addCharOutput").innerHTML = "Error adding character: " + response.statusText;
         return
     } else {
         const data = await response.json()
@@ -57,12 +57,12 @@ async function getFrameData () {
         const data = await response.json();
 
         if (!response.ok) {
-            document.getElementById("frameDataOutput").innerHTML = "Error: " + data.message;
+            document.getElementById("frameDataOutput").innerHTML = "Error getting frame data: " + data.message;
         } else {
             document.getElementById("frameDataOutput").innerHTML = "Frame Data: <br>" + JSON.stringify(data);
         }
     } catch (error) {
-        document.getElementById("frameDataOutput").innerHTML = "Error: " + error.message;
+        document.getElementById("frameDataOutput").innerHTML = "Server Error: " + error.message;
     }
 }
 
@@ -98,7 +98,7 @@ async function loginUser() {
         body: JSON.stringify({ username, password }),
     });
     if (!response.ok) {
-        document.getElementById("loginOutput").innerHTML = "ERROR logging in user: " + response.statusText;
+        document.getElementById("loginOutput").innerHTML = "Error logging in: " + response.statusText;
         return;
     }
     const data = await response.json();
@@ -110,6 +110,8 @@ async function loginUser() {
 async function populateCharacterDropdown() {
     const token = localStorage.getItem('token');
     const dropdown = document.getElementById("getFrameDataInput");
+
+    dropdown.innerHTML = '<option value="">Select a character</option>';
     try {
         const response = await fetch("http://107.23.220.85:3067/api/characters", {
             method: "GET",
@@ -121,7 +123,7 @@ async function populateCharacterDropdown() {
         const data = await response.json()
 
         if (!response.ok) {
-            document.getElementById("frameDataOutput").innerHTML = data.message
+            document.getElementById("frameDataOutput").innerHTML = "Error populating characters: " + data.message
             return;
         }
 
@@ -134,7 +136,37 @@ async function populateCharacterDropdown() {
         }
 
     } catch (error) {
-        document.getElementById("frameDataOutput").innerHTML = "Error: " + error.message
+        document.getElementById("frameDataOutput").innerHTML = "Server Error: " + error.message
     }
 
+}
+
+async function addFrameData() {
+    const token = localStorage.getItem('token')
+    const character = document.getElementById("characterName").value;
+    const move = document.getElementById("moveName").value;
+    const startup = document.getElementById("startup").value;
+    const on_block = document.getElementById("on_block").value;
+    const recovery = document.getElementById("recovery").value;
+
+    try {
+        const response = await fetch("http://107.23.220.85:3067/api/frame-data", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({ character, move, startup, on_block, recovery })
+        });
+
+        if (!response.ok) {
+            document.getElementById("frameDataOutput").innerHTML = "Error adding frame data: " + response.statusText;
+            return;
+        } else {
+            const data = await response.json();
+            document.getElementById("frameDataOutput").innerHTML = "Added Frame Data: " + JSON.stringify(data);
+        }
+    } catch (error) {
+        document.getElementById('addFrameDataOutput').innerHTML = "Server Error: " + error.message
+    }
 }

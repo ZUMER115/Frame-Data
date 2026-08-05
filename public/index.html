@@ -70,7 +70,7 @@
         
         <form onsubmit="event.preventDefault(); getFrameData()">
             <h2>Get Frame Data</h2>
-            
+
             <select id="getFrameDataInput" name="getFrameDataInput">
                 <option value="">Select a character</option>
             </select>
@@ -79,9 +79,36 @@
         </form>
 
         <pre id="frameDataOutput"></pre>
-
-
-
     </div>
+
+    <div id="addFrameData">
+        <form onsubmit="event.preventDefault(); addFrameData()">
+            <label for="character">Character: </label>
+            <input name="character" id="characterName" type="text">
+
+            <label for="move">Move: </label>
+            <input name="move" id="moveName" type="text">
+
+            <label for="startup">Startup: </label>
+            <select name="startup" id="startup">
+                <option value="+">+</option>
+                <option value="-">-</option>
+            </select>
+            <input name="startup" id="startup" type="number">
+
+            <label for="on_block">On Block: </label>
+            <select name="on_block" id="on_block">
+                <option value="+">+</option>
+                <option value="-">-</option>
+            </select>
+            <input name="on_block" id="on_block" type="number">
+
+            <label for="recovery">Recovery: </label>
+            <input name="recovery" id="recovery" type="number">
+
+            <button type="submit">Add Frame Data</button>
+        </form>
+    </div>
+
 </body>
 </html>
