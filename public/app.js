@@ -17,10 +17,9 @@ async function fetchCharacters() {
         return;
     } else {
         const data = await response.json();
-        document.getElementById("addCharacters").innerHTML = "Characters: <br>";
+        document.getElementById("characters").innerHTML = "Characters: <br>";
         for (let i = 0; i < data.length; i++) {
-            
-
+            document.getElementById("characters").innerHTML += data[i].name + "<br>";
         }
     }
 }

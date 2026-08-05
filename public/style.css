@@ -1,5 +1,6 @@
 .characters {
     margin-left: 50px;
+    margin-top:20px;
 }
 
 .login, .register {
@@ -9,4 +10,5 @@
 
 .addCharacters {
     margin-left: 50px;
+
 }
