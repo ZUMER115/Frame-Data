@@ -54,11 +54,11 @@ async function getFrameData () {
                 'Authorization': `Bearer ${token}`
             }
         })
+        const data = await response.json();
 
         if (!response.ok) {
             document.getElementById("frameDataOutput").innerHTML = "Error: " + response.message;
         } else {
-            const data = await response.json();
             document.getElementById("frameDataOutput").innerHTML = "Frame Data: <br>" + JSON.stringify(data);
         }
     } catch (error) {
