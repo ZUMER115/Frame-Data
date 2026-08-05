@@ -25,26 +25,26 @@
 
 .getFrameData {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 }
 
 .characters {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 }
 
 .register {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 }
 
 .login {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 }
 
 .addCharacters {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 }
 
