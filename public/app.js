@@ -118,7 +118,7 @@ async function populateCharacterDropdown() {
             }
         })
 
-        const data = response.json()
+        const data = await response.json()
 
         if (!response.ok) {
             document.getElementById("frameDataOutput").innerHTML = data.message
@@ -129,6 +129,7 @@ async function populateCharacterDropdown() {
             const option = document.createElement("option")
 
             option.value = char.name;
+            option.innerHTML = char.name;
             document.getElementById("getFrameDataInput").appendChild(option)
         }
 
