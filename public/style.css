@@ -26,25 +26,35 @@
 .getFrameData {
     display: flex;
     flex-direction: row;
+    gap: 50px;
 }
 
 .characters {
     display: flex;
     flex-direction: row;
+    gap: 50px;
 }
 
 .register {
     display: flex;
     flex-direction: row;
+    gap: 50px;
 }
 
 .login {
     display: flex;
     flex-direction: row;
+    gap: 50px;
 }
 
 .addCharacters {
     display: flex;
     flex-direction: row;
+    gap: 50px;
 }
 
+#charactersOutput, #registerOutput, #loginOutput, #addCharOutput, #frameDataOutput {
+    border-left: 1px solid black;
+    padding-top: 10px;
+    padding-left: 15px;
+}
