@@ -47,13 +47,12 @@ async function addCharacters() {
 async function getFrameData () {
     const name = document.getElementById("getMovesInput").value
     const token = localStorage.getItem("token")
-    const response = await fetch("http://107.23.220.85:3067/api/getFrameData", {
-        method: 'GET',
+    const response = await fetch(`http://107.23.220.85:3067/api/getFrameData/${name}`, {
+        method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify({ name })
+        }
     })
     if (!response.ok) {
         document.getElementById("getFrameDataForm").innerHTML = "Error: " + response.statusText;
