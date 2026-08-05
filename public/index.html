@@ -8,8 +8,12 @@
 
 <body>
     <div id="characters" class="characters">
-        No content yet.
-        <button type="button" onclick="fetchCharacters()">Load Characters</button>
+        <div>
+            No content yet.
+            <button type="button" onclick="fetchCharacters()">Load Characters</button>
+        </div>
+        <pre id="charactersOutput"></pre>
+
     </div>
 
     <div id="register" class="register">
@@ -24,6 +28,8 @@
 
             <button type="submit">Register</button>
         </form>
+
+        <pre id="registerOutput"></pre>
     </div>
 
     <div id="login" class="login">
@@ -38,6 +44,7 @@
 
             <button type="submit">Login</button>
         </form>
+        <pre id="loginOutput"></pre>
     </div>
 
     <div id="addCharacters" class="addCharacters">
@@ -48,10 +55,11 @@
             <input type="text" id="addChar" name="addChar"><br><br>
             <button type="submit" id="addCharButton">Add Character</button>
         </form>
-
+        <pre id="addCharOutput"></pre>
     </div>
-    <div id="getFrameData" class="getFrameData">
-        <h2>Get Frame Data</h2>
+
+    <h2>Get Frame Data</h2>
+    <div id="getFrameData" class="getFrameData">    
         <form onsubmit="event.preventDefault(); getFrameData()" id="getFrameDataForm">
             <label for="getFrameDataInput">Character</label><br>
             <input type="text" id="getFrameDataInput" name="getFrameDataInput"><br><br>

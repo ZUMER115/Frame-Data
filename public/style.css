@@ -22,3 +22,29 @@
     border-style: solid;
     padding: 10px 0px 20px 20px;
 }
+
+.getFrameData {
+    display: flex;
+    flex-direction: column;
+}
+
+.characters {
+    display: flex;
+    flex-direction: column;
+}
+
+.register {
+    display: flex;
+    flex-direction: column;
+}
+
+.login {
+    display: flex;
+    flex-direction: column;
+}
+
+.addCharacters {
+    display: flex;
+    flex-direction: column;
+}
+
