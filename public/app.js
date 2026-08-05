@@ -8,7 +8,6 @@ async function fetchCharacters() {
     const response = await fetch('http://107.23.220.85:3067/api/characters', {
         method: 'GET',
         headers: {
-            'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
         }
     });
@@ -45,20 +44,24 @@ async function addCharacters() {
 }
 
 async function getFrameData () {
-    const name = document.getElementById("getMovesInput").value
+    const name = document.getElementById("getFrameDataInput").value
     const token = localStorage.getItem("token")
-    const response = await fetch(`http://107.23.220.85:3067/api/getFrameData/${name}`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
+
+    try {
+        const response = await fetch(`http://107.23.220.85:3067/api/getFrameData/${name}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+        if (!response.ok) {
+            document.getElementById("frameDataOutput").innerHTML = "Error: " + response.statusText;
+        } else {
+            const data = await response.json();
+            document.getElementById("frameDataOutput").innerHTML = "Frame Data: <br>" + JSON.stringify(data);
         }
-    })
-    if (!response.ok) {
-        document.getElementById("frameDataOutput").innerHTML = "Error: " + response.statusText;
-    } else {
-        const data = await response.json();
-        document.getElementById("frameDataOutput").innerHTML = "Frame Data: <br>" + JSON.stringify(data);
+    } catch (error) {
+        document.getElementById("frameDataOutput").innerHTML = "Error: " + error.message;
     }
 }
 
