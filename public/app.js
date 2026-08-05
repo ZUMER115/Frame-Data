@@ -54,8 +54,9 @@ async function getFrameData () {
                 'Authorization': `Bearer ${token}`
             }
         })
+
         if (!response.ok) {
-            document.getElementById("frameDataOutput").innerHTML = "Error: " + response.statusText;
+            document.getElementById("frameDataOutput").innerHTML = "Error: " + response.message;
         } else {
             const data = await response.json();
             document.getElementById("frameDataOutput").innerHTML = "Frame Data: <br>" + JSON.stringify(data);
