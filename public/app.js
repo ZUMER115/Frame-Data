@@ -44,6 +44,25 @@ async function addCharacters() {
     }
 }
 
+async function getFrameData () {
+    const name = document.getElementById("getMovesInput").value
+    const token = localStorage.getItem("token")
+    const response = await fetch("http://107.23.220.85:3067/api/frameData", {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({ name })
+    })
+    if (!response.ok) {
+        document.getElementById("getFrameDataForm").innerHTML = "Error: " + response.statusText;
+    } else {
+        const data = await response.json();
+        document.getElementById("getFrameDataForm").innerHTML = "Frame Data: <br>" + JSON.stringify(data);
+    }
+}
+
 async function registerUser() {
     const username = document.getElementById("regUsername").value;
     const password = document.getElementById("regPassword").value;

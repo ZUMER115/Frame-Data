@@ -45,10 +45,19 @@
             <h2>Add Character</h2>
 
             <label for="addChar">Character Name</label><br>
-            <input type="text" id="addChar" name="addChar"><br>
+            <input type="text" id="addChar" name="addChar"><br><br>
             <button type="submit" id="addCharButton">Add Character</button>
         </form>
 
+    </div>
+    <div id="getFrameData" class="getFrameData">
+        <h2>Get Frame Data</h2><br><br>
+        <form onsubmit="event.preventDefault(); getFrameData()" id="getFrameDataForm">
+            <label for="getFrameDataInput">Character</label><br>
+            <input type="text" id="getFrameDataInput" name="getFrameDataInput"><br><br>
+            <button type="submit">Get Data</button>
+        </form>
+        
     </div>
 </body>
 </html>
