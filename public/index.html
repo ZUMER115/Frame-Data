@@ -81,8 +81,9 @@
         <pre id="frameDataOutput"></pre>
     </div>
 
-    <div id="addFrameData">
+    <div id="addFrameData" class="addFrameData">
         <form onsubmit="event.preventDefault(); addFrameData()">
+            <h2>Add Frame Data</h2>
             <label for="character">Character: </label>
             <input name="character" id="characterName" type="text">
 
@@ -105,6 +106,9 @@
 
             <label for="recovery">Recovery: </label>
             <input name="recovery" id="recovery" type="number">
+
+            <label for="notes">Notes: </label>
+            <input name="notes" id="notes" type="text">
 
             <button type="submit">Add Frame Data</button>
         </form>

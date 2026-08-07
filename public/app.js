@@ -43,29 +43,6 @@ async function addCharacters() {
     }
 }
 
-async function getFrameData () {
-    const name = document.getElementById("getFrameDataInput").value
-    const token = localStorage.getItem("token")
-
-    try {
-        const response = await fetch(`http://107.23.220.85:3067/api/frame-data/${name}`, {
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        })
-        const data = await response.json();
-
-        if (!response.ok) {
-            document.getElementById("frameDataOutput").innerHTML = "Error getting frame data: " + data.message;
-        } else {
-            document.getElementById("frameDataOutput").innerHTML = "Frame Data: <br>" + JSON.stringify(data);
-        }
-    } catch (error) {
-        document.getElementById("frameDataOutput").innerHTML = "Server Error: " + error.message;
-    }
-}
-
 async function registerUser() {
     const username = document.getElementById("regUsername").value;
     const password = document.getElementById("regPassword").value;
@@ -141,6 +118,30 @@ async function populateCharacterDropdown() {
 
 }
 
+async function getFrameData () {
+    const name = document.getElementById("getFrameDataInput").value
+    const token = localStorage.getItem("token")
+
+    try {
+        const response = await fetch(`http://107.23.220.85:3067/api/frame-data/${name}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+        const data = await response.json();
+
+        if (!response.ok) {
+            document.getElementById("frameDataOutput").innerHTML = "Error getting frame data: " + data.message;
+        } else {
+            document.getElementById("frameDataOutput").innerHTML = "Frame Data: <br>" + JSON.stringify(data);
+        }
+    } catch (error) {
+        document.getElementById("frameDataOutput").innerHTML = "Server Error: " + error.message;
+    }
+}
+
+
 async function addFrameData() {
     const token = localStorage.getItem('token')
     const character = document.getElementById("characterName").value;
@@ -148,6 +149,7 @@ async function addFrameData() {
     const startup = document.getElementById("startup").value;
     const on_block = document.getElementById("on_block").value;
     const recovery = document.getElementById("recovery").value;
+    const notes = document.getElementById("notes").value;
 
     try {
         const response = await fetch("http://107.23.220.85:3067/api/frame-data", {
@@ -156,7 +158,7 @@ async function addFrameData() {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
             },
-            body: JSON.stringify({ character, move, startup, on_block, recovery })
+            body: JSON.stringify({ character, move, startup, on_block, recovery, notes })
         });
 
         if (!response.ok) {

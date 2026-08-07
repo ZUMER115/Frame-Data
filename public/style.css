@@ -53,8 +53,15 @@
     gap: 50px;
 }
 
-#charactersOutput, #registerOutput, #loginOutput, #addCharOutput, #frameDataOutput {
+#charactersOutput, #registerOutput, #loginOutput, #addCharOutput, #frameDataOutput, #addFrameDataOutput {
     border-left: 1px solid black;
     padding-top: 10px;
     padding-left: 15px;
+}
+
+.addFrameData {
+    border-style: solid;
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
 }
