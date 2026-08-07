@@ -98,7 +98,7 @@ const getFrameData = async (req, res, next) => {
 const addFrameData =  async (req, res, next) => {
     const { error } = frameDataSchema.validate(req.body);
     if (error) {
-        return res.status(400).json({ message: error.details[0].message });
+        return res.status(400).json({ message: "Input Validation - " + error.details[0].message });
     }
     const { character, move, startup, on_block, recovery, on_hit, notes } = req.body;
     const characterID = await pool.query('SELECT id FROM characters WHERE name = $1', [character]);
