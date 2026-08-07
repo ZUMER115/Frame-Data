@@ -45,7 +45,7 @@ async function addCharacters() {
 
 async function addMoves() {
     const token = localStorage.getItem('token')
-    const move = document.getElementById('addMoveForm').value
+    const move = document.getElementById('addMoveInput').value
 
     try {
         const response = await fetch('http://107.23.220.85:3067/api/move', {
