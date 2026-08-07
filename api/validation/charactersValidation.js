@@ -16,8 +16,8 @@ const frameDataSchema = Joi.object({
     character: Joi.string().min(1).max(100).required(),
     move: Joi.string().min(1).max(100).required(),
     startup: Joi.number().integer().min(0).required(),
-    on_block: Joi.number().integer().allow(null).optional(),
-    recovery: Joi.number().integer().min(0).allow(null).optional(),
+    on_block: Joi.number().integer().allow(null, "+", "-", "").optional(),
+    recovery: Joi.number().integer().min(0).allow(null, "").optional(),
     on_hit: Joi.number().integer().allow(null).optional(),
     notes: Joi.string().max(500).allow(null, '').optional()
 })
