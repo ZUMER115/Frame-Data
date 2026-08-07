@@ -53,7 +53,7 @@
     gap: 50px;
 }
 
-#charactersOutput, #registerOutput, #loginOutput, #addCharOutput, #frameDataOutput, #addFrameDataOutput {
+#charactersOutput, #registerOutput, #loginOutput, #addCharOutput, #frameDataOutput, #addFrameDataOutput, #addMoveOutput {
     border-left: 1px solid black;
     padding-top: 10px;
     padding-left: 15px;
@@ -65,5 +65,14 @@
     flex-direction: row;
     gap: 50px;
     margin-left: 50px;
+    padding: 10px 0px 20px 20px;
+}
+
+.addMove {
+    border-style: solid;
+    margin-left: 50px;
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
     padding: 10px 0px 20px 20px;
 }
