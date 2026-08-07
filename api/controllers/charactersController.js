@@ -101,6 +101,11 @@ const addFrameData =  async (req, res, next) => {
         return res.status(400).json({ message: "Input Validation - " + error.details[0].message });
     }
     const { character, move, startup, on_block, recovery, on_hit, notes } = req.body;
+    // Convert empty strings to null for optional numeric fields
+    const on_block = on_block === '' ? null : on_block;
+    const recovery = recovery === '' ? null : recovery;
+    const on_hit = on_hit === '' ? null : on_hit;
+
     const characterID = await pool.query('SELECT id FROM characters WHERE name = $1', [character]);
     if (characterID.rowCount === 0) {
         return res.status(404).json({message: "Character not found"});
