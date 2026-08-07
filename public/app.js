@@ -162,7 +162,7 @@ async function addFrameData() {
         });
 
         if (!response.ok) {
-            document.getElementById("frameDataOutput").innerHTML = "Error adding frame data: " + response.statusText;
+            document.getElementById("frameDataOutput").innerHTML = "Error adding frame data: " + response.message;
             return;
         } else {
             const data = await response.json();
