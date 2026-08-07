@@ -48,7 +48,7 @@ async function addMoves() {
     const move = document.getElementById('addMoveInput').value
 
     try {
-        const response = await fetch('http://107.23.220.85:3067/api/addMoves', {
+        const response = await fetch('http://107.23.220.85:3067/api/moves', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
