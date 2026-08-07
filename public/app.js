@@ -161,12 +161,13 @@ async function addFrameData() {
             body: JSON.stringify({ character, move, startup, on_block, recovery, notes })
         });
 
+        const data = await response.json();
+
         if (!response.ok) {
-            document.getElementById("frameDataOutput").innerHTML = "Error adding frame data: " + response.message;
+            document.getElementById("addFrameDataOutput").innerHTML = "Error adding frame data: " + data.message;
             return;
         } else {
-            const data = await response.json();
-            document.getElementById("frameDataOutput").innerHTML = "Added Frame Data: " + JSON.stringify(data);
+            document.getElementById("addFrameDataOutput").innerHTML = "Added Frame Data: " + JSON.stringify(data);
         }
     } catch (error) {
         document.getElementById('addFrameDataOutput').innerHTML = "Server Error: " + error.message
