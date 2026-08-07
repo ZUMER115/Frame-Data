@@ -147,7 +147,7 @@ async function addFrameData() {
     const character = document.getElementById("characterName").value;
     const move = document.getElementById("moveName").value;
     const startup = document.getElementById("startup").value;
-    const on_block = document.getElementById("on_block").value;
+    const on_block =  document.getElementById("on_block_advantage").value + document.getElementById("on_block").value;
     const recovery = document.getElementById("recovery").value;
     const notes = document.getElementById("notes").value;
 
