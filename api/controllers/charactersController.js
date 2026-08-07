@@ -60,11 +60,15 @@ const addMoves = async (req, res, next) => {
     }
     const { move } = req.body;
     try {
-    const result = await pool.query('INSERT INTO moves (move) VALUES ($1) RETURNING *', [move]);
-    if (result.rowCount === 0) {
-        return res.status(404).json({message: "Failed to add move"});
-    }
-    return res.status(201).json(result.rows[0]);
+        const existing = await pool.query('SELECT * FROM moves WHERE move = $1', [move]);
+        if (existing.rowCount > 0) {
+            return res.status(400).json({message: "Move already exists"});
+        }
+        const result = await pool.query('INSERT INTO moves (move) VALUES ($1) RETURNING *', [move]);
+        if (result.rowCount === 0) {
+            return res.status(404).json({message: "Failed to add move"});
+        }
+        return res.status(201).json(result.rows[0]);
     } catch (error) {
         next(error);
     }
