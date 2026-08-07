@@ -56,9 +56,10 @@ async function addMoves() {
             },
             body: JSON.stringify({ move })
         })
+        const data = await response.json();
 
         if (!response.ok) {
-            document.getElementById('addMoveOutput').innerHTML = "Error adding move: " + response.message
+            document.getElementById('addMoveOutput').innerHTML = "Error adding move: " + data.message
             return
         } else {
             document.getElementById('addMoveOutput').innerHTML = move + "successfully added"
