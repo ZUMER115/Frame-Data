@@ -102,9 +102,9 @@ const addFrameData =  async (req, res, next) => {
     }
     const { character, move, startup, on_block, recovery, on_hit, notes } = req.body;
     // Convert empty strings to null for optional numeric fields
-    const on_block = on_block === '' ? null : on_block;
-    const recovery = recovery === '' ? null : recovery;
-    const on_hit = on_hit === '' ? null : on_hit;
+    const normalized_on_block = on_block === '' ? null : on_block;
+    const normalized_recovery = recovery === '' ? null : recovery;
+    const normalized_on_hit = on_hit === '' ? null : on_hit;
 
     const characterID = await pool.query('SELECT id FROM characters WHERE name = $1', [character]);
     if (characterID.rowCount === 0) {
@@ -118,7 +118,7 @@ const addFrameData =  async (req, res, next) => {
         const result = await pool.query('\
             INSERT INTO frame_data (characters_id, moves_id, startup, on_block, recovery, on_hit, notes) \
             VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *', 
-            [characterID.rows[0].id, moveID.rows[0].id, startup, on_block, recovery, on_hit, notes]);
+            [characterID.rows[0].id, moveID.rows[0].id, startup, normalized_on_block, normalized_recovery, normalized_on_hit, notes]);
         if (result.rowCount === 0) {
             return res.status(400).json({message: "Failed to add frame data"});
         }
