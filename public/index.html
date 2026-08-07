@@ -58,6 +58,18 @@
         <pre id="addCharOutput"></pre>
     </div>
 
+    <div id="addMove" class="addMove">
+        <form onsubmit="event.preventDefault(); addMoves()" id="addMoveForm">
+            <h2>Add Move</h2>
+            <label for="addMoveInput">Move: </label><br>
+            <input type="text" id="addMoveInput" name="addMoveInput"><br><br>
+
+            <button type="submit">Add Move</button>
+        </form>
+
+        <pre id="addMoveOutput"></pre>
+    </div>
+
 
     <div id="getFrameData" class="getFrameData">    
         <!-- <form onsubmit="event.preventDefault(); getFrameData()" id="getFrameDataForm">

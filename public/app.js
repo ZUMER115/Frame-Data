@@ -43,6 +43,33 @@ async function addCharacters() {
     }
 }
 
+async function addMoves() {
+    const token = localStorage.getItem('token')
+    const move = document.getElementById('addMoveForm').value
+
+    try {
+        const response = await fetch('http://107.23.220.85:3067/api/move', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({ move })
+        })
+
+        if (!response.ok) {
+            document.getElementById('addMoveOutput').innerHTML = "Error adding move: " + response.message
+            return
+        } else {
+            document.getElementById('addMoveOutput').innerHTML = move + "successfully added"
+        }
+
+
+    } catch (error) {
+        document.getElementById('addMoveOutput').innerHTML = "Server Error: " + error.message
+    }
+}
+
 async function registerUser() {
     const username = document.getElementById("regUsername").value;
     const password = document.getElementById("regPassword").value;
