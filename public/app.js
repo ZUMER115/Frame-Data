@@ -162,7 +162,8 @@ async function getFrameData () {
         if (!response.ok) {
             document.getElementById("frameDataOutput").innerHTML = "Error getting frame data: " + data.message;
         } else {
-            for(move in data) {
+            document.getElementById('tableData').innerHTML = ""
+            for(const move of data) {
                 const currRow = document.createElement('tr')
 
                 currRow.innerHTML = `
