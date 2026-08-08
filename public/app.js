@@ -173,7 +173,7 @@ async function getFrameData () {
                     <td>${move.on_hit ?? ""}</td>
                     <td>${move.notes ?? ""}</td>
                 `
-                document.getElementById('frameDataTable').appendChild(currRow)
+                document.getElementById('tableData').appendChild(currRow)
             }
 
         }
