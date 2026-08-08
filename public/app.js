@@ -160,7 +160,7 @@ async function getFrameData () {
         const data = await response.json();
 
         if (!response.ok) {
-            document.getElementById("frameDataOutput").innerHTML = "Error getting frame data: " + data.message;
+            document.getElementById("frameDataError").innerHTML = "Error getting frame data: " + data.message;
         } else {
             document.getElementById('tableData').innerHTML = ""
             for(const move of data) {
@@ -176,10 +176,10 @@ async function getFrameData () {
                 `
                 document.getElementById('tableData').appendChild(currRow)
             }
-
+            document.getElementById("frameDataError").innerHTML = "";
         }
     } catch (error) {
-        document.getElementById("frameDataOutput").innerHTML = "Server Error: " + error.message;
+        document.getElementById("frameDataError").innerHTML = "Server Error: " + error.message;
     }
 }
 
