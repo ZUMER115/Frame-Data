@@ -87,10 +87,21 @@
                 <option value="">Select a character</option>
             </select>
             <button type ="submit">Get Data</button><br><br>
-            <button onclick="populateCharacterDropdown()">Load Characters</button>
+            <button type="button" onclick="populateCharacterDropdown()">Load Characters</button>
         </form>
 
-        <pre id="frameDataOutput"></pre>
+        <div id="frameDataOutput">
+            <h2 id="tableChar"></h2>
+            <table id="frameDataTable">
+                <tr id="tableHeaders">
+                    <th id="tableMove"></th>
+                    <th id="tableStartup"></th>
+                    <th id="tableOn_block"></th>
+                    <th id="tableRecovery"></th>
+                    <th id="tableNotes"></th>
+                </tr>
+            </table>
+        </div>
     </div>
 
     <div id="addFrameData" class="addFrameData">

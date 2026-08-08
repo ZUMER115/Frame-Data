@@ -162,7 +162,20 @@ async function getFrameData () {
         if (!response.ok) {
             document.getElementById("frameDataOutput").innerHTML = "Error getting frame data: " + data.message;
         } else {
-            document.getElementById("frameDataOutput").innerHTML = "Frame Data: <br>" + JSON.stringify(data);
+            for(move in data) {
+                const currRow = document.createElement('tr')
+
+                currRow.innerHTML = `
+                    <td>${move.move ?? ""}</td>
+                    <td>${move.startup ?? ""}</td>
+                    <td>${move.on_block ?? ""}</td>
+                    <td>${move.recovery ?? ""}</td>
+                    <td>${move.on_hit ?? ""}</td>
+                    <td>${move.notes ?? ""}</td>
+                `
+                document.getElementById('frameDataTable').appendChild(currRow)
+            }
+
         }
     } catch (error) {
         document.getElementById("frameDataOutput").innerHTML = "Server Error: " + error.message;
