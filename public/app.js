@@ -43,6 +43,35 @@ async function addCharacters() {
     }
 }
 
+async function getMoves() {
+    const token = localStorage.getItem('token')
+    try {
+        const response = await fetch('http://107.23.220.85:3067/api/moves', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        })
+
+    const data = await response.json()
+
+    if (!response.ok) {
+        document.getElementById("getMovesOutput").innerHTML = "Error fetching moves: " + response.statusText;
+        return;
+    } else {
+        document.getElementById("getMovesOutput").innerHTML = "";
+        for (let i = 0; i < data.length; i++) {
+            document.getElementById("getMovesOutput").innerHTML += data[i].move + "<br>";
+        }
+    }
+
+    } catch (error) {
+        document.getElementById('getMovesOutput').innerHTML = "Server Error: " + error.message;
+    }
+
+}
+
 async function addMoves() {
     const token = localStorage.getItem('token')
     const move = document.getElementById('addMoveInput').value
@@ -141,7 +170,7 @@ async function populateCharacterDropdown() {
         }
 
     } catch (error) {
-        document.getElementById("frameDataOutput").innerHTML = "Server Error: " + error.message
+        document.getElementById("frameDataOutput").innerHTML = "Server Error: " + error.message;
     }
 
 }

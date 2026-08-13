@@ -58,6 +58,16 @@
         <pre id="addCharOutput"></pre>
     </div>
 
+    <div id="getMoves" class="getMoves">
+        <form id="addMovesForm" onsubmit="event.preventDefault(); getMoves()">
+            <label for="getMovesButton">Get Moves</label>
+            <button type="submit">Get Moves</button>
+        </form>
+
+        <pre id="getMovesOutput"></pre>
+
+    </div>
+
     <div id="addMove" class="addMove">
         <form onsubmit="event.preventDefault(); addMoves()" id="addMoveForm">
             <h2>Add Move</h2>
