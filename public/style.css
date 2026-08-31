@@ -76,3 +76,12 @@
     gap: 50px;
     padding: 10px 0px 20px 20px;
 }
+
+.getMove {
+    border-style: solid;
+    margin-left: 50px;
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    padding: 10px 0px 20px 20px;
+}
