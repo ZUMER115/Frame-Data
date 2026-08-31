@@ -53,7 +53,7 @@
     gap: 50px;
 }
 
-#charactersOutput, #registerOutput, #loginOutput, #addCharOutput, #frameDataOutput, #addFrameDataOutput, #addMoveOutput {
+#charactersOutput, #registerOutput, #loginOutput, #addCharOutput, #frameDataOutput, #addFrameDataOutput, #addMoveOutput, #getMovesOutput {
     border-left: 1px solid black;
     padding-top: 10px;
     padding-left: 15px;
